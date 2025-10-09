@@ -1,0 +1,17 @@
+# ROS 2 colcon workspace
+build/
+install/
+log/
+# Python
+__pycache__/
+*.pyc
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+# C/C++/CMake
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.so
+*.a
