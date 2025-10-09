@@ -1,0 +1,25 @@
+1. go to the root directory of your project.
+'''
+cd ~/Senior_Design/Vehicle/ros2_ws
+'''
+
+2. remove old build files before compiling your code
+'''
+rm -rf build install log
+colcon build --packages-select car_description
+'''
+
+3. Update your terminal
+'''
+source install/setup.bash
+'''
+
+4. Execute the launch file to start Gazebo and spawn your car model.
+'''
+ros2 launch car_description spawn_car.launch.py
+'''
+
+rm -rf build install log
+colcon build --packages-select car_description
+source install/setup.bash
+ros2 launch car_description spawn_car.launch.py

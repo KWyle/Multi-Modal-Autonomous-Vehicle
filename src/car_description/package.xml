@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>car_description</name>
+  <version>0.0.0</version>
+  <description>A package for the car model and simulation launch files.</description>
+  <maintainer email="wongkyle04@gmail.com">user</maintainer>
+  <license>Apache License 2.0</license>
+
+  <!-- This line is important. It tells ROS that your package needs 'gazebo_ros' to run. -->
+  <exec_depend>gazebo_ros</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
