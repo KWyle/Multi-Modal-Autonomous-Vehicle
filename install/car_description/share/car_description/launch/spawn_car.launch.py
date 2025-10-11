@@ -32,7 +32,9 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py')
         ),
+        launch_arguments={'verbose': 'true'}.items(),   # <— add this
     )
+
 
     # Action to spawn your car model into the Gazebo world.
     # This runs the 'spawn_entity.py' script provided by gazebo_ros.

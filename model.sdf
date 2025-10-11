@@ -155,7 +155,33 @@
         <dynamics><damping>0.1</damping></dynamics>
       </axis>
     </joint>
+    <!-- ============================================================ -->
+    <!-- 🚗 Gazebo ROS Skid-Steer Drive Plugin for keyboard control -->
+    <!-- ============================================================ -->
+    <plugin name="car_skid_steer" filename="libgazebo_ros_skid_steer_drive.so">
+      <ros>
+        <namespace>/my_robot</namespace>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
 
+      <update_rate>50</update_rate>
+
+      <!-- Match your joint names -->
+      <left_front_joint>joint_wheel_fl</left_front_joint>
+      <left_rear_joint>joint_wheel_rl</left_rear_joint>
+      <right_front_joint>joint_wheel_fr</right_front_joint>
+      <right_rear_joint>joint_wheel_rr</right_rear_joint>
+
+      <!-- Wheel geometry -->
+      <wheel_separation>0.24</wheel_separation>     <!-- y distance between left/right -->
+      <wheel_diameter>0.10</wheel_diameter>         <!-- 2 * radius (0.05) -->
+
+      <!-- Performance tuning -->
+      <max_wheel_torque>5.0</max_wheel_torque>
+      <max_speed>2.0</max_speed>
+      <command_timeout>1.0</command_timeout>
+    </plugin>
   </model>
 </sdf>
 

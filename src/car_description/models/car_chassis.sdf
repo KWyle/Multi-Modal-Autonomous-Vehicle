@@ -3,7 +3,6 @@
   <model name='car_with_axles'>
     <static>false</static>
 
-    <!-- ====================== CHASSIS ====================== -->
     <link name='chassis_link'>
       <pose>0 0 0.3 0 0 0</pose>
       <inertial>
@@ -20,153 +19,132 @@
       </visual>
       <collision name='collision'>
         <geometry><box><size>1.0 0.5 0.3</size></box></geometry>
+        <surface>
+          <friction><ode><mu>0.8</mu><mu2>0.8</mu2></ode></friction>
+        </surface>
       </collision>
     </link>
 
-    <!-- ====================== AXLES ====================== -->
-    <link name='front_axle_link'>
-      <pose>0.35 0 0.15 1.5707 0 0</pose>
-      <inertial><mass>10</mass></inertial>
-      <visual name='visual'>
-        <geometry><cylinder><radius>0.02</radius><length>0.7</length></cylinder></geometry>
-      </visual>
-      <collision name='collision'>
-        <geometry><cylinder><radius>0.02</radius><length>0.7</length></cylinder></geometry>
-      </collision>
-    </link>
-
-    <link name='rear_axle_link'>
-      <pose>-0.35 0 0.15 1.5707 0 0</pose>
-      <inertial><mass>10</mass></inertial>
-      <visual name='visual'>
-        <geometry><cylinder><radius>0.02</radius><length>0.7</length></cylinder></geometry>
-      </visual>
-      <collision name='collision'>
-        <geometry><cylinder><radius>0.02</radius><length>0.7</length></cylinder></geometry>
-      </collision>
-    </link>
-
-    <!-- ====================== WHEELS ====================== -->
-    <!-- identical structure, each with realistic friction -->
     <link name='front_left_wheel'>
-      <pose>0.35 0.3 0.15 1.5707 0 0</pose>
+      <pose>0.35 0.3 0.15 0 0 0</pose>
       <inertial><mass>5</mass></inertial>
       <visual name='visual'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
+        <material><ambient>0.1 0.1 0.1 1</ambient></material>
       </visual>
       <collision name='collision'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
         <surface>
-          <friction><ode><mu>1.2</mu><mu2>1.2</mu2></ode></friction>
-          <contact><ode><kp>1e6</kp><kd>1.0</kd></ode></contact>
+          <friction><ode><mu>0.05</mu><mu2>0.05</mu2></ode></friction>
+          <contact><ode><kp>1e6</kp><kd>2.0</kd></ode></contact>
         </surface>
       </collision>
     </link>
 
     <link name='front_right_wheel'>
-      <pose>0.35 -0.3 0.15 1.5707 0 0</pose>
+      <pose>0.35 -0.3 0.15 0 0 0</pose>
       <inertial><mass>5</mass></inertial>
       <visual name='visual'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
       </visual>
       <collision name='collision'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
         <surface>
-          <friction><ode><mu>1.2</mu><mu2>1.2</mu2></ode></friction>
-          <contact><ode><kp>1e6</kp><kd>1.0</kd></ode></contact>
+          <friction><ode><mu>0.05</mu><mu2>0.05</mu2></ode></friction>
+          <contact><ode><kp>1e6</kp><kd>2.0</kd></ode></contact>
         </surface>
       </collision>
     </link>
 
     <link name='rear_left_wheel'>
-      <pose>-0.35 0.3 0.15 1.5707 0 0</pose>
+      <pose>-0.35 0.3 0.15 0 0 0</pose>
       <inertial><mass>5</mass></inertial>
       <visual name='visual'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
       </visual>
       <collision name='collision'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
         <surface>
-          <friction><ode><mu>1.2</mu><mu2>1.2</mu2></ode></friction>
-          <contact><ode><kp>1e6</kp><kd>1.0</kd></ode></contact>
+          <friction>
+            <ode>
+              <mu>1.6</mu><mu2>1.6</mu2>
+              <slip1>0.0</slip1><slip2>0.0</slip2>
+            </ode>
+          </friction>
+          <contact><ode><kp>1e6</kp><kd>2.0</kd></ode></contact>
         </surface>
       </collision>
     </link>
 
     <link name='rear_right_wheel'>
-      <pose>-0.35 -0.3 0.15 1.5707 0 0</pose>
+      <pose>-0.35 -0.3 0.15 0 0 0</pose>
       <inertial><mass>5</mass></inertial>
       <visual name='visual'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
       </visual>
       <collision name='collision'>
+        <pose>0 0 0 1.5707 0 0</pose>
         <geometry><cylinder><radius>0.15</radius><length>0.1</length></cylinder></geometry>
         <surface>
-          <friction><ode><mu>1.2</mu><mu2>1.2</mu2></ode></friction>
-          <contact><ode><kp>1e6</kp><kd>1.0</kd></ode></contact>
+          <friction>
+            <ode>
+              <mu>1.6</mu><mu2>1.6</mu2>
+              <slip1>0.0</slip1><slip2>0.0</slip2>
+            </ode>
+          </friction>
+          <contact><ode><kp>1e6</kp><kd>2.0</kd></ode></contact>
         </surface>
       </collision>
     </link>
 
-    <!-- ====================== JOINTS ====================== -->
-    <joint name='front_axle_joint' type='fixed'>
+    <joint name='front_left_wheel_joint' type='fixed'>
       <parent>chassis_link</parent>
-      <child>front_axle_link</child>
-    </joint>
-
-    <joint name='rear_axle_joint' type='fixed'>
-      <parent>chassis_link</parent>
-      <child>rear_axle_link</child>
-    </joint>
-
-    <!-- wheel joints with correct pivot and damping -->
-    <joint name='front_left_wheel_joint' type='revolute'>
-      <pose>0.35 0.3 0.15 0 0 0</pose>
-      <parent>front_axle_link</parent>
       <child>front_left_wheel</child>
-      <axis>
-        <xyz>0 1 0</xyz>
-        <use_parent_model_frame>true</use_parent_model_frame>
-        <limit><lower>-1e16</lower><upper>1e16</upper></limit>
-        <dynamics><damping>2.0</damping><friction>0.1</friction></dynamics>
-      </axis>
     </joint>
 
-    <joint name='front_right_wheel_joint' type='revolute'>
-      <pose>0.35 -0.3 0.15 0 0 0</pose>
-      <parent>front_axle_link</parent>
+    <joint name='front_right_wheel_joint' type='fixed'>
+      <parent>chassis_link</parent>
       <child>front_right_wheel</child>
-      <axis>
-        <xyz>0 1 0</xyz>
-        <use_parent_model_frame>true</use_parent_model_frame>
-        <limit><lower>-1e16</lower><upper>1e16</upper></limit>
-        <dynamics><damping>2.0</damping><friction>0.1</friction></dynamics>
-      </axis>
     </joint>
 
     <joint name='rear_left_wheel_joint' type='revolute'>
-      <pose>-0.35 0.3 0.15 0 0 0</pose>
-      <parent>rear_axle_link</parent>
+      <parent>chassis_link</parent>
       <child>rear_left_wheel</child>
       <axis>
         <xyz>0 1 0</xyz>
         <use_parent_model_frame>true</use_parent_model_frame>
         <limit><lower>-1e16</lower><upper>1e16</upper></limit>
-        <dynamics><damping>2.0</damping><friction>0.1</friction></dynamics>
+        <dynamics><damping>1.5</damping><friction>0.2</friction></dynamics>
       </axis>
     </joint>
 
     <joint name='rear_right_wheel_joint' type='revolute'>
-      <pose>-0.35 -0.3 0.15 0 0 0</pose>
-      <parent>rear_axle_link</parent>
+      <parent>chassis_link</parent>
       <child>rear_right_wheel</child>
       <axis>
         <xyz>0 1 0</xyz>
         <use_parent_model_frame>true</use_parent_model_frame>
         <limit><lower>-1e16</lower><upper>1e16</upper></limit>
-        <dynamics><damping>2.0</damping><friction>0.1</friction></dynamics>
+        <dynamics><damping>1.5</damping><friction>0.2</friction></dynamics>
       </axis>
     </joint>
-
+    
+    <plugin name="car_diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <ros><namespace>/car_chassis</namespace></ros>
+      <left_joint>rear_left_wheel_joint</left_joint>
+      <right_joint>rear_right_wheel_joint</right_joint>
+      <wheel_separation>0.6</wheel_separation>
+      <wheel_radius>0.15</wheel_radius>
+      <max_wheel_torque>120.0</max_wheel_torque>
+      <max_speed>3.0</max_speed>
+      <command_timeout>0.20</command_timeout>  <!-- stops ~0.2s after you release -->
+    </plugin>
   </model>
 </sdf>
