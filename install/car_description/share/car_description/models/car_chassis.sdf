@@ -146,5 +146,74 @@
       <max_speed>3.0</max_speed>
       <command_timeout>0.20</command_timeout>  <!-- stops ~0.2s after you release -->
     </plugin>
+    <!-- ====================== CAMERA ====================== -->
+   <link name="camera_mount_link">
+    <pose>0.35 0.0 0.45 0 0 0</pose>
+    <inertial>
+      <mass>0.05</mass>
+      <inertia><ixx>1e-4</ixx><iyy>1e-4</iyy><izz>1e-4</izz></inertia>
+    </inertial>
+
+    <!-- Base pad (unchanged) -->
+    <visual name="camera_base_vis">
+      <pose>0 0 0.01 0 0 0</pose>
+      <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      <material><ambient>0.2 0.2 0.2 1</ambient></material>
+    </visual>
+
+    <!-- HALF HEIGHT mast: now only 0.11 m tall -->
+    <visual name="camera_mast_vis">
+      <pose>0 0 0.065 0 0 0</pose>  <!-- base 0.02 → mast center 0.02 + 0.055 = 0.075 -->
+      <geometry><box><size>0.02 0.02 0.11</size></box></geometry>
+      <material><ambient>0.1 0.1 0.1 1</ambient></material>
+    </visual>
+
+    <self_collide>false</self_collide>
+  </link>
+
+  <!-- Mount fixed to chassis -->
+  <joint name="camera_mount_joint" type="fixed">
+    <parent>chassis_link</parent>
+    <child>camera_mount_link</child>
+  </joint>
+
+  <!-- Camera just above new shorter mast -->
+  <link name="camera_link">
+    <pose>0.35 0.0 0.58 0 0 0</pose>  <!-- adjusted from 0.70 → 0.58 -->
+    <inertial>
+      <mass>0.05</mass>
+      <inertia><ixx>1e-4</ixx><iyy>1e-4</iyy><izz>1e-4</izz></inertia>
+    </inertial>
+
+    <visual name="camera_body_vis">
+      <geometry><box><size>0.06 0.04 0.04</size></box></geometry>
+      <material><ambient>0.05 0.05 0.05 1</ambient></material>
+    </visual>
+
+    <sensor name="roof_camera" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30</update_rate>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+        <clip><near>0.05</near><far>50.0</far></clip>
+      </camera>
+      <plugin name="roof_camera_ros" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/car_chassis</namespace>
+          <remapping>image:=camera/image_raw</remapping>
+          <remapping>camera_info:=camera/camera_info</remapping>
+        </ros>
+        <frame_name>camera_link</frame_name>
+      </plugin>
+    </sensor>
+  </link>
+
+  <joint name="camera_fixed_to_mount" type="fixed">
+    <parent>camera_mount_link</parent>
+    <child>camera_link</child>
+  </joint>
+
   </model>
 </sdf>
