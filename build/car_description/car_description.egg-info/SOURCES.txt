@@ -8,7 +8,6 @@ setup.py
 ../../build/car_description/car_description.egg-info/requires.txt
 ../../build/car_description/car_description.egg-info/top_level.txt
 ../../build/car_description/car_description.egg-info/zip-safe
-launch/drive_car.launch.py
 launch/spawn_car.launch.py
 models/car_chassis.sdf
 resource/car_description
