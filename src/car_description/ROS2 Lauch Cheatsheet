@@ -29,3 +29,11 @@ ros2 launch car_description spawn_car.launch.py
 # teleop (Different Terminal)
 cd ~/Senior_Design/Vehicle/ros2_ws
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/car_chassis/cmd_vel
+
+# Ultrasonic Sensors (Different Terminal again)
+cd ~/Senior_Design/Vehicle/ros2_ws
+colcon build
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 run perception_inference ultrasonic_monitor --ros-args -p print_period_s:=0.5
+
