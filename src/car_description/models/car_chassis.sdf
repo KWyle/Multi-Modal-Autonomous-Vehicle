@@ -144,6 +144,8 @@
       <wheel_radius>0.15</wheel_radius>
       <max_wheel_torque>120.0</max_wheel_torque>
       <max_speed>3.0</max_speed>
+      <max_backward_speed>3.0</max_backward_speed>
+      
       <command_timeout>0.20</command_timeout>  <!-- stops ~0.2s after you release -->
     </plugin>
 
@@ -262,14 +264,6 @@
 
         <!-- ============ ULTRASONIC: LEFT (bottom-left, forward) ============ -->
     <link name="ultra_left_link">
-      <!-- 
-        POSE ADDED BACK TO THE LINK, relative to the chassis_link.
-        This matches the pattern used by your camera_link.
-        
-        X=0.5 (On the front face, which is at +0.5 from chassis center)
-        Y=0.25 (On the left corner, which is at +0.25 from chassis center)
-        Z=-0.15 (On the bottom, which is at -0.15 from chassis center)
-      -->
       <pose relative_to="chassis_link">0.5 0.25 -0.15 0 0 0</pose>
 
       <inertial><mass>0.02</mass>
@@ -277,8 +271,6 @@
       </inertial>
       <gravity>false</gravity>
 
-      <!-- Visual only (no collision to avoid self-hits) -->
-      <!-- UPDATED: Changed from cylinder to a box to match visual expectation -->
       <visual name="ultra_left_vis">
         <geometry><box><size>0.03 0.02 0.02</size></box></geometry>
         <material><ambient>0.1 0.1 0.1 1</ambient></material>
@@ -288,7 +280,6 @@
         <always_on>true</always_on>
         <update_rate>20</update_rate>
         <visualize>true</visualize>
-        <!-- Start rays ahead so they don't intersect the housing -->
         <pose>0.05 0 0 0 0 0</pose>
         <ray>
           <scan>
@@ -307,7 +298,6 @@
           <noise><type>gaussian</type><mean>0.0</mean><stddev>0.01</stddev></noise>
         </ray>
         <plugin name="ultra_left_scan" filename="libgazebo_ros_ray_sensor.so">
-          <!-- <output_type>LaserScan</output_type> -->
           <ros>
             <namespace>/ultrasonic/left</namespace>
             <remapping>~/out:=scan</remapping>
@@ -320,21 +310,10 @@
     <joint name="ultra_left_fixed" type="fixed">
       <parent>chassis_link</parent>
       <child>ultra_left_link</child>
-      <!-- 
-        POSE REMOVED FROM JOINT.
-        The link's pose tag now defines its position.
-      -->
     </joint>
 
     <!-- ============ ULTRASONIC: RIGHT (bottom-right, forward) ============ -->
     <link name="ultra_right_link">
-      <!-- 
-        POSE ADDED BACK TO THE LINK, relative to the chassis_link.
-        
-        X=0.5 (On the front face)
-        Y=-0.25 (On the right corner)
-        Z=-0.15 (On the bottom)
-      -->
       <pose relative_to="chassis_link">0.5 -0.25 -0.15 0 0 0</pose>
 
       <inertial><mass>0.02</mass>
@@ -342,8 +321,6 @@
       </inertial>
       <gravity>false</gravity>
 
-      <!-- Visual only (no collision to avoid self-hits) -->
-      <!-- UPDATED: Changed from cylinder to a box to match visual expectation -->
       <visual name="ultra_right_vis">
         <geometry><box><size>0.03 0.02 0.02</size></box></geometry>
         <material><ambient>0.1 0.1 0.1 1</ambient></material>
@@ -371,7 +348,6 @@
           <noise><type>gaussian</type><mean>0.0</mean><stddev>0.01</stddev></noise>
         </ray>
         <plugin name="ultra_right_scan" filename="libgazebo_ros_ray_sensor.so">
-          <!-- <output_type>LaserScan</output_type> -->
           <ros>
             <namespace>/ultrasonic/right</namespace>
             <remapping>~/out:=scan</remapping>
@@ -384,10 +360,6 @@
     <joint name="ultra_right_fixed" type="fixed">
       <parent>chassis_link</parent>
       <child>ultra_right_link</child>
-      <!-- 
-        POSE REMOVED FROM JOINT.
-        The link's pose tag now defines its position.
-      -->
     </joint>
   </model>
 </sdf>
