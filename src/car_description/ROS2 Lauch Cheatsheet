@@ -37,3 +37,20 @@ source /opt/ros/humble/setup.bash
 source install/setup.bash
 ros2 run perception_inference ultrasonic_monitor --ros-args -p print_period_s:=0.5
 
+# ML Inference Node (Different Terminal again)
+cd ~/Senior_Design/Vehicle/ros2_ws
+rm -rf build install log
+colcon build --packages-select perception_inference
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 launch perception_inference ml_infer.launch.py \
+  model_path:=/home/kylewong/Senior_Design/Vehicle/ros2_ws/src/perception_inference/models/yolo12n.pt \
+  image_topic:=/oak/color/oak_color/image_raw
+
+# View Inference Results (Different Terminal again)
+rqt
+# In rqt: Plugins → Visualization → Image View → select /inference/image_marked
+
+
+
+
