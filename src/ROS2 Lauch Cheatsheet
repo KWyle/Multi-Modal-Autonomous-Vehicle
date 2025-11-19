@@ -19,6 +19,7 @@ source install/setup.bash
 ros2 launch car_description spawn_car.launch.py
 '''
 
+# Start Gazebo and Spawn Car
 cd ~/Senior_Design/Vehicle/ros2_ws
 rm -rf build install log
 colcon build
