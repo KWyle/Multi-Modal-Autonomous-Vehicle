@@ -42,6 +42,7 @@ class InferenceNode(Node):
     def __init__(self) -> None:
         super().__init__('inference_node')
 
+        self._frame_idx = 0 
         # Parameters
         self.declare_parameter('image_topic', '/oak/color/image_raw')
         self.declare_parameter('model_path', '')
@@ -114,12 +115,30 @@ class InferenceNode(Node):
         return msg
 
     # callback
+        # callback
     def _image_cb(self, msg: Image) -> None:
+        # FRAME SKIP: process every 3rd frame (tune as needed) -----
+        self._frame_idx += 1
+        if self._frame_idx % 3 != 0:
+            return
+
+        # Convert to OpenCV
         img_bgr = self._rosimg_to_cv2(msg)
+
+        TARGET_W = 640
+        h, w = img_bgr.shape[:2]
+        if w > TARGET_W:
+            new_w = TARGET_W
+            new_h = int(h * (new_w / w))
+            img_bgr = cv2.resize(img_bgr, (new_w, new_h), interpolation=cv2.INTER_AREA)
+
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
 
+        # Run YOLO
         results = self.model.predict(
-            img_rgb, conf=self.conf_thresh, verbose=False
+            img_rgb,
+            conf=self.conf_thresh,
+            verbose=False
         )
         res = results[0]
 
@@ -156,7 +175,6 @@ class InferenceNode(Node):
             s = String()
             s.data = json.dumps({'detections': dets})
             self.pub_json.publish(s)
-
 
 def main() -> None:
     rclpy.init()
