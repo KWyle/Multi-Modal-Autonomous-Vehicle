@@ -52,6 +52,13 @@ ros2 launch perception_inference ml_infer.launch.py \
 rqt
 # In rqt: Plugins → Visualization → Image View → select /inference/image_marked
 
+# OAK-D Detection Distance Node (Different Terminal again)
+cd ~/Senior_Design/Vehicle/ros2_ws
+rm -rf build install log
+colcon build --packages-select perception_inference
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 run perception_inference oak_detection_distance
 
 
 

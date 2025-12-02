@@ -27,6 +27,8 @@ setup(
             'infer_node = perception_inference.infer_node:main',
             'ultrasonic_monitor = perception_inference.ultrasonic_monitor:main',
             'obstacle_stop_node = perception_inference.obstacle_stop_node:main',
+            'ml_infer = perception_inference.ml_infer_node:main',
+            'oak_detection_distance = perception_inference.oak_detection_distance:main',
         ],
     },
 )
