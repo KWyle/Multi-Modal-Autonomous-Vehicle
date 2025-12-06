@@ -29,6 +29,7 @@ setup(
             'obstacle_stop_node = perception_inference.obstacle_stop_node:main',
             'ml_infer = perception_inference.ml_infer_node:main',
             'oak_detection_distance = perception_inference.oak_detection_distance:main',
+            'fusion_decision = perception_inference.fusion_decision_node:main',
         ],
     },
 )

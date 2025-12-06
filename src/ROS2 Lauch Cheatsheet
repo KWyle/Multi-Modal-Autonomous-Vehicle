@@ -1,24 +1,3 @@
-1. go to the root directory of your project.
-'''
-cd ~/Senior_Design/Vehicle/ros2_ws
-'''
-
-2. remove old build files before compiling your code
-'''
-rm -rf build install log
-colcon build --packages-select car_description
-'''
-
-3. Update your terminal
-'''
-source install/setup.bash
-'''
-
-4. Execute the launch file to start Gazebo and spawn your car model.
-'''
-ros2 launch car_description spawn_car.launch.py
-'''
-
 # Start Gazebo and Spawn Car
 cd ~/Senior_Design/Vehicle/ros2_ws
 rm -rf build install log
@@ -30,13 +9,6 @@ ros2 launch car_description spawn_car.launch.py
 # teleop (Different Terminal)
 cd ~/Senior_Design/Vehicle/ros2_ws
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/car_chassis/cmd_vel
-
-# Ultrasonic Sensors (Different Terminal again)
-cd ~/Senior_Design/Vehicle/ros2_ws
-colcon build
-source /opt/ros/humble/setup.bash
-source install/setup.bash
-ros2 run perception_inference ultrasonic_monitor --ros-args -p print_period_s:=0.5
 
 # ML Inference Node (Different Terminal again)
 cd ~/Senior_Design/Vehicle/ros2_ws
@@ -60,5 +32,16 @@ source /opt/ros/humble/setup.bash
 source install/setup.bash
 ros2 run perception_inference oak_detection_distance
 
+# Ultrasonic Sensors (Different Terminal again)
+cd ~/Senior_Design/Vehicle/ros2_ws
+colcon build
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 run perception_inference ultrasonic_monitor --ros-args -p print_period_s:=1.0
 
+# Fusion Decision Node (Different Terminal again)
+cd ~/Senior_Design/Vehicle/ros2_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 run perception_inference fusion_decision
 
