@@ -23,9 +23,10 @@
           <friction><ode><mu>0.8</mu><mu2>0.8</mu2></ode></friction>
         </surface>
       </collision>
-            <!-- ============ ULTRASONIC: LEFT (30° left, near front-left edge) ============ -->
+      
+      <!-- ============ ULTRASONIC: LEFT (30° left, mid-height on side) ============ -->
       <visual name="ultra_left_vis">
-        <pose>1.015 0.69 -0.14 0 0 0.523599</pose>  <!-- +30° yaw -->
+        <pose>1.015 0.69 0 0 0 0.523599</pose>  <!-- +30° yaw, mid-height -->
         <geometry>
           <box><size>0.03 0.02 0.02</size></box>
         </geometry>
@@ -38,7 +39,7 @@
         <always_on>true</always_on>
         <update_rate>20</update_rate>
         <visualize>true</visualize>
-        <pose>1.015 0.69 -0.14 0 0 0.523599</pose> <!-- +30° yaw -->
+        <pose>1.015 0.69 0 0 0 0.523599</pose> <!-- +30° yaw, mid-height -->
         <ray>
           <scan>
             <horizontal>
@@ -68,9 +69,9 @@
         </plugin>
       </sensor>
 
-      <!-- ============ ULTRASONIC: RIGHT (30° right, near front-right edge) ============ -->
+      <!-- ============ ULTRASONIC: RIGHT (30° right, mid-height on side) ============ -->
       <visual name="ultra_right_vis">
-        <pose>1.015 -0.69 -0.14 0 0 -0.523599</pose> <!-- -30° yaw -->
+        <pose>1.015 -0.69 0 0 0 -0.523599</pose> <!-- -30° yaw, mid-height -->
         <geometry>
           <box><size>0.03 0.02 0.02</size></box>
         </geometry>
@@ -83,7 +84,7 @@
         <always_on>true</always_on>
         <update_rate>20</update_rate>
         <visualize>true</visualize>
-        <pose>1.015 -0.69 -0.14 0 0 -0.523599</pose> <!-- -30° yaw -->
+        <pose>1.015 -0.69 0 0 0 -0.523599</pose> <!-- -30° yaw, mid-height -->
         <ray>
           <scan>
             <horizontal>

@@ -10,10 +10,13 @@ class FusionDecisionNode(Node):
     def __init__(self):
         super().__init__('fusion_decision')
 
-        # --- Thresholds (meters) ---
-        self.declare_parameter('front_stop_distance', 2.0)   # hard stop distance
-        self.declare_parameter('front_slow_distance', 4.0)   # start slowing distance
-        self.declare_parameter('side_avoid_distance', 0.6)   # side too-close distance
+        # Thresholds (meters)
+        # Hard stop if obstacle is closer than this in front
+        self.declare_parameter('front_stop_distance', 2.0)
+        # Start slowing down if obstacle is within this distance in front
+        self.declare_parameter('front_slow_distance', 4.0)
+        # Start turning away if side obstacle is closer than this
+        self.declare_parameter('side_avoid_distance', 0.8)
 
         self.front_stop_distance = self.get_parameter(
             'front_stop_distance').get_parameter_value().double_value
@@ -49,6 +52,7 @@ class FusionDecisionNode(Node):
             10
         )
 
+        # Action publisher (for future motor-control node)
         self.action_pub = self.create_publisher(String, '/desired_action', 10)
 
         # Run fusion at 1 Hz
@@ -66,7 +70,7 @@ class FusionDecisionNode(Node):
     def right_cb(self, msg: Float32):
         self.right_dist = float(msg.data)
 
-    # Helper
+    # Helper: normalize distance
     @staticmethod
     def _norm_dist(d):
         if d is None or not math.isfinite(d):
@@ -137,7 +141,7 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-            pass
+        pass
     node.destroy_node()
     rclpy.shutdown()
 
