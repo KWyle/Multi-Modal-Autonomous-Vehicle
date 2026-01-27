@@ -96,15 +96,15 @@ class FusionDecisionNode(Node):
         fslow = self.front_slow_distance
         sside = self.side_avoid_distance
 
-        # 1) Emergency stop: obstacle very close ahead
+        # Emergency stop: obstacle very close ahead
         if f <= fs:
             action = 'FULL_STOP (OBSTACLE AHEAD)'
 
-        # 2) Boxed in and close in front
+        # Boxed in and close in front
         elif l <= sside and r <= sside and f <= fslow:
             action = 'STOP (BOXED IN)'
 
-        # 3) Getting close in front: slow down (maybe with steering)
+        # Getting close in front --> slow down
         elif f <= fslow:
             if l <= sside < r:
                 action = 'SLOW_DOWN + STEER_RIGHT (LEFT TOO CLOSE)'
@@ -113,7 +113,7 @@ class FusionDecisionNode(Node):
             else:
                 action = 'SLOW_DOWN (FRONT GETTING CLOSE)'
 
-        # 4) Front clear: use sides for lane keeping
+        # Front clear --> use sides for lane keeping
         else:
             if l <= sside and r > sside:
                 action = 'STEER_RIGHT (LEFT TOO CLOSE)'
