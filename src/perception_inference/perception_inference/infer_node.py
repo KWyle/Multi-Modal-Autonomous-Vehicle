@@ -26,6 +26,7 @@ if 'weights_only' in torch.load.__code__.co_varnames:
         kwargs.setdefault('weights_only', False)
         return _orig_torch_load(*args, **kwargs)
 
+    # TODO: Remove the global patch entirely, load models safely
     torch.load = _torch_load_unsafe
 
 try:
@@ -57,6 +58,7 @@ class InferenceNode(Node):
         self.publish_json = bool(self.get_parameter('publish_json').value)
 
         if not self.model_path:
+            # Model file path assumed to exist without checking on the directory
             from ament_index_python.packages import get_package_share_directory
             pkg_share = get_package_share_directory('perception_inference')
             self.model_path = os.path.join(pkg_share, 'models', 'yolo12n.pt')
@@ -64,6 +66,7 @@ class InferenceNode(Node):
         self.get_logger().info(f'Loading model: {self.model_path}')
 
         # Load YOLO model (CPU), I have AMD GPU so cuda() won't work
+        #TODO: Auto-detect hardware then set device accordingly
         self.model = YOLO(self.model_path)
 
         # Publishers
@@ -117,7 +120,9 @@ class InferenceNode(Node):
     # callback
         # callback
     def _image_cb(self, msg: Image) -> None:
+        # TODO: Callbacks lack try-except blocks 
         # FRAME SKIP: process every 3rd frame (tune as needed) -----
+        # TODO: Hard-coded frame skip (every 3rd frame) - appropriate for Mac CPU development but not for Jetson GPU deployment
         self._frame_idx += 1
         if self._frame_idx % 3 != 0:
             return
@@ -125,6 +130,7 @@ class InferenceNode(Node):
         # Convert to OpenCV
         img_bgr = self._rosimg_to_cv2(msg)
 
+        # TODO: Why 640? Should this be configurable?
         TARGET_W = 640
         h, w = img_bgr.shape[:2]
         if w > TARGET_W:

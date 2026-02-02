@@ -44,6 +44,7 @@ class OakDetectionDistanceNode(Node):
 
     # Depth callback
     def _depth_cb(self, depth_msg: Image):
+        # TODO: Callbacks lack try-except blocks
         """Update straight-ahead distance from the depth center pixel."""
         if depth_msg.encoding not in ('32FC1', 'TYPE_32FC1'):
             return
@@ -68,6 +69,7 @@ class OakDetectionDistanceNode(Node):
 
     # Detections callback
     def _detections_cb(self, msg: Detection2DArray):
+        # TODO: Callbacks lack try-except blocks
         """
         When YOLO sees something, remember its label.
         We'll pair this label with the depth-based center distance.

@@ -119,6 +119,7 @@ class UltrasonicMonitor(Node):
                 self.get_logger().warn(f"RIGHT topic type unsupported: {types}")
 
     # Callbacks
+    # TODO: Callbacks lack try-except blocks
     def _left_ls_cb(self, msg: LaserScan):
         self.left_dist = laserscan_min_distance(msg)
         self._publish_clean_left()
