@@ -43,14 +43,14 @@ VIDEO_FILE_PATH  = "test_video.mp4"
 # Recording CONFIG
 # ---------------------------------------------------------------
 RECORD_VIDEO      = False
-RECORD_OUTPUT_PATH = "/home/vehicles/Desktop/vehicles/Multi-Modal-Autonomous-Vehicle/test_videos/recording.mp4"
+RECORD_OUTPUT_PATH = "/home/vehicles/Desktop/vehicles/test_videos/recording.mp4"
 RECORD_FPS        = 20
 RECORD_DURATION   = 5 * 60   # seconds (0 = unlimited)
 
 # ---------------------------------------------------------------
 # Model CONFIG
 # ---------------------------------------------------------------
-ENGINE_PATH      = "/home/vehicles/Desktop/vehicles/Multi-Modal-Autonomous-Vehicle/models/yolov8n_640_nms.engine"
+ENGINE_PATH      = "/home/vehicles/Desktop/vehicles/models/yolov8n_640_nms.engine"
 MODEL_INPUT_SIZE = 640
 
 CONF_TH = 0.5
@@ -120,7 +120,7 @@ FUSION_ESCALATE_ULTRA_INCHES = 6.0
 # ---------------------------------------------------------------
 # Lane CONFIG
 # ---------------------------------------------------------------
-LANE_ENGINE_PATH   = "/home/vehicles/Desktop/vehicles/Multi-Modal-Autonomous-Vehicle/models/ultra-fast-lane-det-culane.engine"
+LANE_ENGINE_PATH   = "/home/vehicles/Desktop/vehicles/models/ultra-fast-lane-det-culane.engine"
 LANE_INPUT_W       = 800
 LANE_INPUT_H       = 288
 LANE_ROW_ANCHORS   = 18
