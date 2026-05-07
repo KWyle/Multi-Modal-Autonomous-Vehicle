@@ -512,8 +512,6 @@ All tuneable constants are defined near the top of each file.
 
 - **TensorRT engine portability** — TensorRT `.engine` files are compiled for a specific GPU architecture and TensorRT version. Engines must be recompiled on the target Jetson if JetPack is updated or the model is changed.
 
-- **`car_simulation.py`** — A legacy simulation/testing script not connected to the active pipeline. Scheduled for removal in a future cleanup commit.
-
 - **Headless deployment** — `SHOW_VIDEO = True` requires a connected display or virtual framebuffer. Set `SHOW_VIDEO = False` in `jetson_fusion.py` for headless/embedded deployments.
 
 - **Depth accuracy at range** — Stereo depth degrades beyond ~5–6 m. The `MAX_MM = 8000` cap reflects this; objects beyond 8 m will not trigger camera-based alerts.
