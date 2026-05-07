@@ -528,7 +528,7 @@ All tuneable constants are defined near the top of each file.
 
 ## License
 
-[TODO: Add a license — e.g. MIT, Apache 2.0, or project-specific.]
+Copyright (c) 2025 Colorado State University
 
 ---
 
