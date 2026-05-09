@@ -1,6 +1,6 @@
 # Multi-Modal Autonomous Driving Alert System (ADAS)
 
-A real-time, multi-threaded ADAS running on an **NVIDIA Jetson Orin Nano** and a **Raspberry Pi Pico 2 W**. The system fuses three sensing modalities — YOLOv8n object detection, Ultra Fast Lane Detection (UFLD), and HC-SR04 ultrasonic proximity — into a unified alert pipeline, with audio feedback delivered via a PWM buzzer on the Pico.
+A real-time, multi-threaded ADAS running on an **NVIDIA Jetson Orin Nano** and a **Raspberry Pi Pico 2 W**. The system fuses three sensing modalities — YOLOv8n object detection, Ultra Fast Lane Detection (UFLD), and HC-SR04 ultrasonic proximity — into a unified alert pipeline, with audio feedback delivered via a simple speaker on the Pico.
 
 ---
 
@@ -38,7 +38,7 @@ This project implements a multi-modal ADAS alert system for a mobile autonomous 
 
 2. **Lane Departure Detection — UFLD (Jetson GPU, TensorRT)**: An Ultra Fast Lane Detection model, also compiled as a TensorRT engine, runs in a second dedicated GPU thread. It identifies left and right lane boundaries and detects when the vehicle drifts toward either edge.
 
-3. **Ultrasonic Proximity Sensing — HC-SR04 (Pico 2 W)**: The Pico continuously polls an HC-SR04 sensor and streams distance readings to the Jetson at ~10 Hz over USB serial. It also receives alert commands from the Jetson and drives a PWM buzzer with distinct audio patterns for each alert type.
+3. **Ultrasonic Proximity Sensing — HC-SR04 (Pico 2 W)**: The Pico continuously polls an HC-SR04 sensor and streams distance readings to the Jetson at ~10 Hz over USB serial. It also receives alert commands from the Jetson and drives a speaker with distinct audio patterns for each alert type.
 
 All three streams are fused on the Jetson into a single prioritised `FusionResult` at 20 Hz, which is sent to the Pico as a serial command.
 
