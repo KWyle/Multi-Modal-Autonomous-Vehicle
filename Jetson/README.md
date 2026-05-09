@@ -173,20 +173,16 @@ Multi-Modal-Autonomous-Vehicle/  (YOLO branch)
 │                           # distance readings to the Jetson at ~10 Hz, and
 │                           # drives the PWM buzzer with per-alert-type patterns.
 │
-├── models/
-│   ├── yolov8n_640_nms.engine
-│   │                       # YOLOv8n compiled as a TensorRT engine for the
-│   │                       # Jetson GPU (640×640 input, includes NMS).
-│   │                       # Inference runs on the Jetson GPU via Ultralytics.
-│   │
-│   └── ultra-fast-lane-det-culane.engine
-│                           # Ultra Fast Lane Detection (UFLD) compiled as a
-│                           # TensorRT engine. Detects up to 4 lane lines and
-│                           # identifies departure from the two inner lanes.
-│
-└── car_simulation.py       # [UNUSED] Early-stage simulation/testing script.
-                            # Not part of the active pipeline. Scheduled for
-                            # removal in a future cleanup commit.
+└── models/
+    ├── yolov8n_640_nms.engine
+    │                       # YOLOv8n compiled as a TensorRT engine for the
+    │                       # Jetson GPU (640×640 input, includes NMS).
+    │                       # Inference runs on the Jetson GPU via Ultralytics.
+    │
+    └── ultra-fast-lane-det-culane.engine
+                            # Ultra Fast Lane Detection (UFLD) compiled as a
+                            # TensorRT engine. Detects up to 4 lane lines and
+                            # identifies departure from the two inner lanes.
 ```
 
 ---
